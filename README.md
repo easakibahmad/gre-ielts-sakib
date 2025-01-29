@@ -1,0 +1,2 @@
+## Getting Started
+install tailwind
