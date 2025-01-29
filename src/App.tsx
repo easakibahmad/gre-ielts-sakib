@@ -1,10 +1,11 @@
 import type { Component } from 'solid-js';
+import MainLayout from './layouts/main/index.tsx';
 
 const App: Component = () => {
   return (
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div>
+      <MainLayout/>
+    </div>
 
   );
 };

@@ -11,6 +11,9 @@
     "types": ["vite/client"],
     "noEmit": true,
     "isolatedModules": true,
-    "allowImportingTsExtensions": true // newly added
+    "allowImportingTsExtensions": true, // newly added
+    "paths": { // newly added
+      "@/*": ["./src/*"]
+    }
   }
 }
