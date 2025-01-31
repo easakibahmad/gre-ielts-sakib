@@ -20,6 +20,9 @@
 .bg-root{
     background-color: #1E1E1E;
 }
+.bg-soft-cream-shade{
+    background-color: #faf4eb;
+}
 
 /* border classes */
 .border-gradient-yellow  {

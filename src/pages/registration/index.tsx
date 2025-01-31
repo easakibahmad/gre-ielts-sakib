@@ -1,4 +1,5 @@
 import { createSignal } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 
 import ArrowNext from "@/assets/svg/ArrowNext.tsx";
 import Google from "@/assets/svg/Google.tsx";
@@ -8,9 +9,47 @@ import Apple from "@/assets/svg/Apple.tsx";
 const Registration = () => {
   const [username, setUsername] = createSignal('');
   const [password, setPassword] = createSignal('');  
-  const handleSubmit = () => {
-    console.log('Username:', username());
-    console.log('Password:', password());
+  const [loading, setLoading] = createSignal(false);
+  const [error, setError] = createSignal<string | null>(null);
+  const [success, setSuccess] = createSignal(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: Event) => {
+    e.preventDefault(); 
+
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: username(),
+          password: password(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Registration failed');
+      }
+
+      const data = await response.json();
+      console.log('Registration successful:', data);
+      setSuccess(true);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unknown error occurred');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return <div class="w-full h-screen flex items-center justify-center bg-root text-white font-inter">
@@ -20,8 +59,10 @@ const Registration = () => {
             <h1 class="text-4xl font-bold font-grotesk">Create an account</h1>
             <p class="color-grey text-xl">Please complete your registration to continue...</p>
           </div>
-
-          <div class="flex justify-center gap-14 my-10">
+            {loading() && <p class="text-yellow-500 text-center">Loading...</p>}
+            {error() && <p class="text-red-500 text-center">{error()}</p>}
+            {success() && <p class="text-green-500 text-center">User created successfully!</p>}
+            {!success() && <div class="flex justify-center gap-14 my-10">
 
             <div class="flex flex-col gap-3">
               <input 
@@ -43,6 +84,13 @@ const Registration = () => {
                 onClick={handleSubmit}>
                 Signup <ArrowNext/>
               </button>
+              <p class="font-grotesk text-[11px] color-grey">Already have an account yet? 
+                <button 
+                  class="text-white hover:underline cursor-pointer" 
+                  onClick={() => navigate("/login")}>
+                  Login now!
+                </button>
+              </p>
             </div>
 
             <div class="flex flex-col gap-3">
@@ -57,7 +105,7 @@ const Registration = () => {
               </button>
             </div>
 
-          </div>
+          </div>}
       </div>
   </div>
 };
