@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+.font-grotesk {
+    font-family: "Space Grotesk", sans-serif;
+}
+.color-grey{
+    color: #898889;
+}
+.bg-input{
+    background-color: #222222;
+}
+.bg-root{
+    background-color: #1E1E1E;
+}
+.border-gradient-yellow  {
+    background: linear-gradient(#1D1D1F, #1D1D1F) padding-box,
+                linear-gradient(to right, #A9A5FD, #EBD75C) border-box;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+.input-btn-size{
+    width: 340px;
+    height: 52px;
+}

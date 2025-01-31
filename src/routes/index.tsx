@@ -6,11 +6,7 @@ export const routes = [
         component: lazy(() => import("@/pages/home/index.tsx")),
     },
     {
-        path: "/gre",
-        component: lazy(() => import("@/pages/gre/index.tsx"))
-    },
-    {
-        path: "/ielts",
-        component: lazy(() => import("@/pages/ielts/index.tsx"))
+        path: "/registration",
+        component: lazy(() => import("@/pages/registration/index.tsx")),
     }
 ]
