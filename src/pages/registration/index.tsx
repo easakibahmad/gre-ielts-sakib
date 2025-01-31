@@ -7,13 +7,13 @@ import Apple from "@/assets/svg/Apple.tsx";
 
 const Registration = () => {
   const [username, setUsername] = createSignal('');
-  const [password, setPassword] = createSignal('');
+  const [password, setPassword] = createSignal('');  
   const handleSubmit = () => {
     console.log('Username:', username());
     console.log('Password:', password());
   };
 
-  return <div class="w-full h-screen flex items-center justify-center bg-root text-white">
+  return <div class="w-full h-screen flex items-center justify-center bg-root text-white font-inter">
       <div>
 
           <div class="flex flex-col items-center gap-2 text-center">
@@ -49,7 +49,7 @@ const Registration = () => {
               <button class="cursor-pointer flex justify-start gap-4 px-5 items-center input-btn-size border-gradient-yellow">
                 <Google/> Sign up with Google
               </button>
-              <button class="cursor-pointer flex justify-start gap-4 px-5 items-center input-btn-size border-gradient-yellow">
+              <button class="cursor-pointer flex justify-start gap-4 px-5 items-center input-btn-size border-gradient-blue">
                 <Facebook/> Sign up with Facebook
               </button>
               <button class="cursor-pointer flex justify-start gap-4 px-5 items-center input-btn-size border-gradient-yellow">
