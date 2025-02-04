@@ -11,7 +11,7 @@ export const routes = [
     ),
   },
   {
-    path: "/registration",
+    path: "/signup",
     component: lazy(() =>
       import("@/pages/registration/index.tsx").then((module) => ({
         default: () => <Main>{module.default()}</Main>,
